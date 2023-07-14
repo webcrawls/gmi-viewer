@@ -24,7 +24,7 @@ Additionally, this project provides a few QOL tweaks:
 
 ## usage
 
-Visit [https://webcrawls.github.io/gmi-viewer](#) to try it out!
+Visit https://webcrawls.github.io/gmi-viewer to try it out!
 
 Otherwise, if you're looking to run it locally:
 

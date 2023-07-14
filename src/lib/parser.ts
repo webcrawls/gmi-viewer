@@ -6,9 +6,10 @@ export const geminiParser = (input: string) => {
         let preformatted = false;
         let quoted = false;
 
-        for (const line of lines) {
+        for (let line of lines) {
             if (line.startsWith(">")) {
                 quoted = true;
+                line = line.slice(1)
                 output += "<blockquote>"
             } else if (quoted && !line.startsWith(">")) {
                 quoted = false;

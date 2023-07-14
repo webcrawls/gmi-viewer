@@ -11,12 +11,12 @@ very simple, so it's a good candidate to learn from :)
 This project can render the following line types defined in the Gemini spec:
 
 - [x] Text lines (§ 5.4.1)
-- [ ] Link lines (§ 5.4.2)
+- [x] Link lines (§ 5.4.2)
 - [x] Preformatted toggle lines (§ 5.4.3)
 - [x] Preformatted text lines (§ 5.4.4)
 - [x] Heading lines (§ 5.5.1)
 - [ ] Unordered list items (§ 5.5.2)
-- [ ] Quote lines (§ 5.5.3)
+- [x] Quote lines (§ 5.5.3)
 
 Additionally, this project provides a few QOL tweaks:
 
@@ -32,3 +32,8 @@ Otherwise, if you're looking to run it locally:
 - run `npm install` in the project root
 - run `npm run dev` to start a local server, probably on `localhost:5173`
 - enjoy!
+
+## caveats
+
+- things are sorta slow when the parser starts, all advice welcome!
+- styling is fairly rudimentary

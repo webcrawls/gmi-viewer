@@ -4,11 +4,22 @@ export const geminiParser = (input: string) => {
     const asHtml = (): string => {
         let output = "";
         let preformatted = false;
+        let quoted = false;
 
         for (const line of lines) {
+            if (line.startsWith(">")) {
+                quoted = true;
+                output += "<blockquote>"
+            } else if (quoted && !line.startsWith(">")) {
+                quoted = false;
+                output += "</blockquote>"
+            }
+
             if (line.startsWith("=>")) {
+                // link line, section 5.4.2
                 output += parseLinkLine(line)
             } else if (line.startsWith("```")) {
+                // preformatted line, sections 5.4.3 & 5.4.4
                 if (!preformatted) {
                     preformatted = true;
                     output += "<pre>"
@@ -17,12 +28,12 @@ export const geminiParser = (input: string) => {
                     output += "</pre>"
                 }
             } else if (line.startsWith("#")) {
+                // heading line, section 5.5.1
                 output += parseHeadingLine(line)
             } else if (line.length) {
+                // text line, section 5.4.1
                 output += `<p>${line}</p>`
             }
-
-            if (!preformatted) output += "<br>"
         }
 
         return output;
@@ -31,19 +42,18 @@ export const geminiParser = (input: string) => {
     return {asHtml}
 }
 
-// section 5.4.1
-const parseTextLine = (input: string): string => input
+const parseLinkLine = (input: string): string => {
+    const cleaned = input
+        .slice(2) // remove =>
+        .trim() // remove leading space
 
-// section 5.4.2
-const parseLinkLine = (input: string): string => input
+    const spaceIndex = cleaned.indexOf(" ")
+    const url = cleaned.slice(0, spaceIndex)
+    const name = cleaned.slice(spaceIndex + 1)
 
-// section 5.4.3
-const parsePreformattedToggleLine = (input: string): string => input
+    return `<a href="${url}" alt="${name}">${name}</a>`
+}
 
-// section 5.4.4
-const parsePreformattedTextLine = (input: string): string => input
-
-// section 5.5.1
 const parseHeadingLine = (input: string): string => {
     console.log("heading: " + input)
     let headingLevel = 0;
@@ -65,8 +75,9 @@ const parseHeadingLine = (input: string): string => {
     return `<h${headingLevel}>${input.slice(contentStartIndex)}</h${headingLevel}>`
 }
 
-// section 5.5.2
-const parseUnorderedListLine = (input: string): string => input
-
-// section 5.5.3
-const parseQuoteLine = (input: string): string => input
+// todo
+// // section 5.5.2
+// const parseUnorderedListLine = (input: string): string => input
+//
+// // section 5.5.3
+// const parseQuoteLine = (input: string): string => input

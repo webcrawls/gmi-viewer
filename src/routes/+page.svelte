@@ -6,7 +6,25 @@
     import {writable} from "svelte/store";
     import {debounce} from "$lib";
 
-    const content = browser ? localStore("gmi-viewer:content", {text: "Hello!"}) : writable({text: "Hello!"})
+    const defaultText = {
+        text: "#HELLO\n" +
+            "##HELLO\n" +
+            "###HELLO\n" +
+            "####HELLO\n" +
+            "#####HELLO\n" +
+            "######HELLO\n" +
+            "\n" +
+            "```\n" +
+            "def code():\n" +
+            "  print(\"yeah this is python for sure lets gooo\")\n" +
+            "```\n" +
+            "\n" +
+            "=> https://google.com this is a link :D\n" +
+            "\n" +
+            "> this is a quote"
+    }
+
+    const content = browser ? localStore("gmi-viewer:content", defaultText) : writable(defaultText)
     const handleUpdate = debounce((e) => $content.text = e.detail, 100)
 </script>
 

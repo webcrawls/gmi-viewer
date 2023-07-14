@@ -33,6 +33,12 @@ Otherwise, if you're looking to run it locally:
 - run `npm run dev` to start a local server, probably on `localhost:5173`
 - enjoy!
 
+## todo
+
+- button to switch between input and render on mobile
+- clean up styling and weird overflows
+- improve parser performance
+
 ## caveats
 
 - things are sorta slow when the parser starts, all advice welcome!

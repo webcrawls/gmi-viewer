@@ -20,7 +20,7 @@ This project can render the following line types defined in the Gemini spec:
 
 Additionally, this project provides a few QOL tweaks:
 
-- Stores current text input in localStorage, under `gmi-viewer:content`
+- Stores current text input in localStorage, under the `gmi-viewer:content` key
 
 ## usage
 

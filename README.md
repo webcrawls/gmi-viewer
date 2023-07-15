@@ -37,3 +37,9 @@ Otherwise, if you're looking to run it locally:
 
 - things are sorta slow when the parser starts, all advice welcome!
 - styling is fairly rudimentary
+
+## thanks
+
+- Svelte
+- Tailwind
+- TypeScript
